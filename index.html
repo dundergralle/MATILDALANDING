@@ -219,6 +219,16 @@ if (window.location.pathname === '/link') {
     .catch(function() { setCity(null); });
 })();
 </script>
+<script>
+var timer = setTimeout(function() {
+  window.location.href = 'https://wa.me/46723490053';
+}, 5000);
 
+document.querySelectorAll('.btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    clearTimeout(timer);
+  });
+});
+</script>
 </body>
 </html>
