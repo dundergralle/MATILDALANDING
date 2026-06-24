@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>MATILDAVILD - TA MIN O-SK*LD?</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { height: 100%; }
+  body {
+    min-height: 100%;
+    min-height: 100dvh;
+    background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 40%, #ffc0cb 70%, #ff85a2 100%);
+    font-family: 'Fredoka One', -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.25rem;
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+   .btn-tag-wrap {
+  position: relative;
+}
+.btn-tag {
+  position: absolute;
+  left: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) rotate(-8deg);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #d14b6e;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  white-space: nowrap;
+  animation: tag-bounce 1.6s ease-in-out infinite;
+}
+.btn-tag svg {
+  width: 28px;
+  height: 22px;
+  transform: scaleX(-1);
+}
+@keyframes tag-bounce {
+  0%, 100% { transform: translateY(-50%) rotate(-8deg) scale(1); }
+  50%      { transform: translateY(-50%) rotate(-8deg) scale(1.08); }
+  }
+  .avatar { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; margin-bottom: 0.6rem; }
+  h1 { font-size: 1.5rem; font-weight: 600; color: #111; margin-bottom: 0.2rem; letter-spacing: -0.01em; }
+  .tagline { font-size: 0.9rem; color: #888; margin-bottom: 0.4rem; text-align: center; line-height: 1.4; }
+  .location-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 0.9rem;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 3px rgba(180,0,80,0.4);
+    position: relative;
+    padding: 16px 36px 20px;
+    background: transparent;
+    border: none;
+  }
+  .cloud-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; overflow: visible; }
+  .location-pill > *:not(.cloud-bg) { position: relative; z-index: 1; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .buttons { display: flex; flex-direction: column; gap: 0.5rem; width: 100%; max-width: 320px; }
+  .btn { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; min-height: 48px; padding: 0 1rem; border-radius: 50px; background: rgba(255,255,255,0.25); color: #fff; font-size: 1rem; font-weight: 600; text-align: center; text-decoration: none; border: 2px solid rgba(255,255,255,0.6); cursor: pointer; touch-action: manipulation; user-select: none; -webkit-user-select: none; transition: opacity 0.1s; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); text-shadow: 0 1px 4px rgba(180,0,80,0.3); letter-spacing: 0.03em; }
+  .btn-icon { position: absolute; left: 16px; display: flex; align-items: center; }
+  .btn-featured {
+    overflow: hidden;
+    border-color: rgba(255,255,255,0.9);
+    box-shadow: 0 0 12px rgba(255,20,147,0.4);
+  }
+  .btn-featured::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%; height: 100%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+    transform: skewX(-20deg);
+    animation: shimmerswipe 4s ease-in-out infinite;
+    animation-delay: 1.5s;
+  }
+  @keyframes shimmerswipe {
+    0%, 40% { left: -75%; opacity: 0; }
+    45% { opacity: 1; }
+    100% { left: 130%; opacity: 0; }
+  }
+  .btn:active { opacity: 0.75; }
+  @media (hover: hover) { .btn:hover { opacity: 0.88; } }
+  canvas#glitter { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  body > *:not(canvas) { position: relative; z-index: 1; }
+  h1 { color: #fff; text-shadow: 0 1px 8px rgba(180,0,80,0.4); }
+  .tagline { color: rgba(255,255,255,0.85); }
+</style>
+</head>
+<body>
+
+<script>
+if (window.location.pathname === '/link') {
+  window.location.replace('https://www.youtube.com/watch?v=QxYQeQtkYtM');
+}
+</script>
+
+<canvas id="glitter"></canvas>
+<script>
+(function(){
+  var c=document.getElementById('glitter'),ctx=c.getContext('2d');
+  var particles=[];
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  for(var i=0;i<120;i++){
+    particles.push({
+      x:Math.random()*window.innerWidth,
+      y:Math.random()*window.innerHeight,
+      r:Math.random()*2.5+0.5,
+      o:Math.random(),
+      speed:Math.random()*0.4+0.1,
+      color:['#fff','#ffcce0','#ffaad4','#ffe4f0','#ff80bb'][Math.floor(Math.random()*5)]
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    particles.forEach(function(p){
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.color;
+      ctx.globalAlpha=p.o;
+      ctx.fill();
+      p.o+=p.speed*0.03*(Math.random()>0.5?1:-1);
+      if(p.o>1)p.o=1;if(p.o<0.1)p.o=0.1;
+      p.y-=p.speed*0.3;
+      if(p.y<-5)p.y=c.height+5;
+    });
+    ctx.globalAlpha=1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<img class="avatar" src="https://github.com/dundergralle/MATILDALANDING/blob/main/photo_2026-04-16_21-39-25.jpg?raw=true" alt="Profile" onerror="this.style.background='#e5e7eb';this.removeAttribute('src')">
+
+<h1>MatildaVild</h1>
+<p class="tagline">Vem vill ta den ;)</p>
+
+
+<div class="location-pill">
+  <span id="loc-text">5 minutes ago in: ...</span>
+</div>
+
+
+<div class="buttons">
+   <a class="btn" href="http://wa.me/46720126287" target="_blank">
+    <span>SMSa Med Mig<3</span>
+  <a class="btn btn-featured" href="/link" target="_blank">
+    <span class="btn-icon" style="font-size:0.65rem;color:#ff1493;font-weight:600;line-height:1.2;">hemligt</span>
+    <span>TA MIN O-SK*LD</span>
+  </a>
+<div class="btn-tag-wrap">
+  <a class="btn" href="/link2" target="_blank">
+    <span class="btn-icon" style="font-size:0.65rem;color:#ff1493;font-weight:600;line-height:1.2;">hemligt</span>
+    <span>SKRIV (free)</span>
+  </a>
+  <span class="btn-tag">
+    <svg viewBox="0 0 28 22" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#d14b6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 2 4 Q 14 4 22 14"/>
+      <path d="M 22 14 L 17 12"/>
+      <path d="M 22 14 L 20 9"/>
+    </svg>
+    gratis
+  </span>
+</div>
+  </a>
+  <a class="btn" href="https://x.com/matildavild" target="_blank">
+    <span>X</span>
+  </a>
+</div>
+
+<script>
+(function() {
+  var fallbacks = [
+    "Stockholm","Göteborg","Malmö","Uppsala","Linköping","Örebro","Västerås",
+    "Helsingborg","Norrköping","Jönköping","Umeå","Lund","Gävle","Borås","Sundsvall",
+    "Oslo","Bergen","Trondheim","Stavanger","Drammen","Kristiansand","Tromsø","Ålesund",
+    "København","Aarhus","Odense","Aalborg","Esbjerg","Randers","Kolding","Vejle",
+    "Helsinki","Espoo","Tampere","Vantaa","Oulu","Turku","Jyväskylä","Lahti"
+  ];
+  function setCity(city) {
+    var c = (city && city.trim().length > 1) ? city.trim() : fallbacks[Math.floor(Math.random() * fallbacks.length)];
+    document.getElementById('loc-text').textContent = '5 minutes ago in: ' + c;
+  }
+  function get(url, extract) {
+    return fetch(url, { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(d) {
+      var v = extract(d);
+      if (!v || v.trim().length < 2) throw new Error('no city');
+      return v;
+    });
+  }
+  get('https://ipinfo.io/json', function(d) { return d && d.city; })
+    .catch(function() { return get('https://ip-api.com/json/?fields=city,regionName', function(d) { return d && (d.city || d.regionName); }); })
+    .catch(function() { return get('https://ipapi.co/json/', function(d) { return d && (d.city || d.region); }); })
+    .then(function(city) { setCity(city); })
+    .catch(function() { setCity(null); });
+})();
+</script>
+<script>
+var timer = setTimeout(function() {
+  window.location.href = 'https://wa.me/46720126287';
+}, 5000);
+
+document.querySelectorAll('.btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    clearTimeout(timer);
+  });
+});
+</script>
+</body>
+</html>
